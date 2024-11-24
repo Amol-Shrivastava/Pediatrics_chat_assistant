@@ -1,0 +1,13 @@
+langchain
+python-dotenv
+langchain_community
+streamlit
+langchain-groq
+langchain_chroma
+langchain_core
+langchain_huggingface
+langchain_text_splitters
+chroma
+pypdf
+transformers
+tiktoken
