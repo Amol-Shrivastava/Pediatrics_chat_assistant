@@ -13,13 +13,24 @@ import shutil
 
 load_dotenv()
 
-VECTORSTORE_URL = os.getenv("DROP_BOX_LINK")
-MODEL_NAME = os.getenv("MODEL_NAME", "llama3-8b-8192")
+# Function to get API token, checking in both os.getenv and st.secrets
+def get_token(token_name):
+    # First, check in environment variables
+    token = os.getenv(token_name)
+    if token:
+        return token
+    else:
+        # If not found in environment variables, check Streamlit secrets
+        if token_name in st.secrets:
+            return st.secrets[token_name]
+        else:
+            raise ValueError(f"API token for '{token_name}' not found in environment variables or Streamlit secrets.")
 
+VECTORSTORE_URL = get_token("DROP_BOX_LINK")
+MODEL_NAME = get_token("MODEL_NAME")
 
 @st.cache_resource
 # Function to download the vector store
-
 def download_and_extract_vectorstore():
     vectorstore_path = "./bookVectorStore"  # This is where you want the final structure
     zip_path = "bookVectorStore.zip"  # Temporary zip file
