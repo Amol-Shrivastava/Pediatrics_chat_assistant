@@ -11,3 +11,9 @@ chroma
 pypdf
 transformers
 tiktoken
+youtube_search
+wikipedia
+duckduckgo-search
+xmltodict
+certifi
+chatgroq
